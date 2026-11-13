@@ -1,6 +1,6 @@
 # Pranav Bhandare - Neo-Brutalist Portfolio Website
 
-A portfolio website crafted for **Pranav Bhandare** (Video Editor & Visual Creative), reverse-engineered directly from the reference website [pmanifestoo.vercel.app](https://pmanifestoo.vercel.app/) using the **REA (Reverse Engineer Anything)** methodology.
+A portfolio website crafted for **Pranav Bhandare** (Video Editor & Visual Creative)
 
 ---
 
