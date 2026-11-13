@@ -274,12 +274,12 @@ export default function CinemaModal({ project, isOpen, onClose }) {
             <div>
               <span className="block text-black/50 text-[10px] uppercase">SOURCE ASSET</span>
               <a
-                href={project.videoUrl || project.link}
+                href={project.videoUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="font-bold text-pink hover:underline flex items-center gap-1"
               >
-                Canva Raw MP4 ↗
+                Direct Master Video ↗
               </a>
             </div>
           </div>

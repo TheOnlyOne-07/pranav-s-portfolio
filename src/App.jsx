@@ -701,15 +701,16 @@ export default function App() {
                 <span>See My Work</span>
                 <ArrowUpRight size={22} className="stroke-[3]" />
               </a>
-              <a 
-                href="https://cineaurastudios.my.canva.site/portfolio" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="sticker-btn !bg-white hover:!bg-pink hover:!text-white"
+              <button 
+                onClick={() => {
+                  playClickSound();
+                  setCinemaProject(projects[1]);
+                }}
+                className="sticker-btn !bg-white hover:!bg-pink hover:!text-white cursor-pointer"
               >
                 <Play size={20} className="fill-current" />
                 <span>2026 Showreel</span>
-              </a>
+              </button>
               <a 
                 href="#contact" 
                 className="sticker-btn !bg-mint hover:!bg-yellow"
@@ -1495,15 +1496,11 @@ export default function App() {
                     <span className="font-bold text-black text-xs">4K UHD / ProRes 422</span>
                   </div>
                   <div className="border-2 border-black bg-[#f4f4f4] p-2.5">
-                    <span className="block text-[9px] uppercase tracking-wider text-black/60 font-bold">PORTFOLIO</span>
-                    <a 
-                      href="https://cineaurastudios.my.canva.site/portfolio" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="font-bold text-purple hover:underline text-xs flex items-center gap-1"
-                    >
-                      cineaurastudios ↗
-                    </a>
+                    <span className="block text-[9px] uppercase tracking-wider text-black/60 font-bold">AVAILABILITY</span>
+                    <span className="font-bold text-black text-xs flex items-center gap-1.5">
+                      <span className="inline-block h-2 w-2 rounded-full bg-[#25D366] animate-pulse"></span>
+                      Open for Bookings
+                    </span>
                   </div>
                 </div>
 
@@ -1617,15 +1614,6 @@ export default function App() {
                     </svg>
                     <span>WhatsApp Chat</span>
                   </a>
-                  <a 
-                    href="https://cineaurastudios.my.canva.site/portfolio" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="sticker-btn !bg-pink !text-white hover:!bg-black"
-                  >
-                    <span>Canva Portfolio</span>
-                    <ArrowUpRight size={18} className="stroke-[3]" />
-                  </a>
                 </div>
 
               </div>
@@ -1699,18 +1687,24 @@ export default function App() {
             </div>
 
             <div className="mt-8 pt-4 border-t-2 border-black/10 flex justify-between items-center">
-              <a 
-                href={activeModalProject.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="sticker-btn !text-sm !py-2 !px-4"
-              >
-                <span>Open Project Link</span>
-                <ExternalLink size={16} />
-              </a>
+              {activeModalProject.videoUrl ? (
+                <button 
+                  onClick={() => {
+                    const p = activeModalProject;
+                    setActiveModalProject(null);
+                    setCinemaProject(p);
+                  }}
+                  className="sticker-btn !text-sm !py-2 !px-4 !bg-yellow cursor-pointer flex items-center gap-2"
+                >
+                  <Play size={16} className="fill-current" />
+                  <span>Watch in Cinema</span>
+                </button>
+              ) : (
+                <div />
+              )}
               <button 
                 onClick={() => setActiveModalProject(null)}
-                className="font-display text-sm uppercase hover:text-pink"
+                className="font-display text-sm uppercase hover:text-pink cursor-pointer"
               >
                 Close
               </button>

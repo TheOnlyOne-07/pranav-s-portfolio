@@ -50,7 +50,7 @@ A portfolio website crafted for **Pranav Bhandare** (Video Editor & Visual Creat
      - `05`: Digital Illustration & Vector Art Collection
      - `06`: Poster & Print Layout Design
    - Interactive modal "Quick View" preview dialogs for each project
-   - Verified Canva portfolio CTA banner
+   - Full Cinema modal video player with interactive playback controls
 5. **Creative Lab / Playground (`#playground`)**:
    - "Pixels at Play: explorations, experiments, and escapades"
    - Clickable interactive experiment cards with "TAP ON ME!" lightbox dialogs
@@ -66,7 +66,7 @@ A portfolio website crafted for **Pranav Bhandare** (Video Editor & Visual Creat
    - "LET'S MEET!" neo-brutalist contact card
    - Instant 1-click copyable email (`beyondgreatest33@gmail.com`) with feedback toast
    - Direct phone call link (`+91 8766569752`)
-   - Social links and Canva portfolio redirect
+   - Direct WhatsApp quick chat integration
    - Back to top button
 
 ---
