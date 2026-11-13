@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --font-sans: 'General Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  
+  --color-paper: #e6e6e6;
+  --color-purple: #b200ff;
+  --color-pink: #f5009b;
+  --color-yellow: #fbea04;
+  --color-red: #ff0808;
+  --color-forest: #3c584c;
+  --color-lime: #63c636;
+  --color-mint: #afe4bb;
+  --color-black: #000000;
+  --color-white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-paper);
+  color: #000;
+  overflow-x: hidden;
+}
+
+::selection {
+  color: var(--color-yellow);
+  background: #000;
+}
+
+/* Paper Grain Texture Overlay */
+#main {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-paper);
+}
+
+#main::before {
+  content: "";
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.4 -.45'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  position: fixed;
+  inset: 0;
+}
+
+/* Display Typography */
+.font-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Hard Shadows */
+.hs-sm {
+  box-shadow: 3px 3px 0 #000;
+}
+.hs {
+  box-shadow: 6px 6px 0 #000;
+}
+.hs-lg {
+  box-shadow: 10px 10px 0 #000;
+}
+
+/* Sticker Button */
+.sticker-btn {
+  background: var(--color-yellow);
+  color: #000;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.4rem 0.6rem;
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  border: 3px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  user-select: none;
+}
+.sticker-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #000;
+}
+.sticker-btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 #000;
+}
+
+/* Grid Frame with Dashed Boundary Lines */
+.grid-frame {
+  --line: rgba(255, 255, 255, 0.28);
+}
+.grid-frame:not(.absolute):not(.fixed) {
+  position: relative;
+}
+.grid-frame.on-light {
+  --line: rgba(0, 0, 0, 0.25);
+}
+.grid-frame::before,
+.grid-frame::after {
+  content: "";
+  border-left: 1px dashed var(--line);
+  pointer-events: none;
+  z-index: 10;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.grid-frame::before {
+  left: calc(50% - min(720px, 50vw - 16px));
+}
+.grid-frame::after {
+  right: calc(50% - min(720px, 50vw - 16px));
+}
+
+.dashed-h {
+  border-top: 1px dashed var(--line, rgba(255, 255, 255, 0.28));
+}
+
+/* Section Notch Separator */
+.notch-wrap {
+  z-index: 20;
+  filter: drop-shadow(3px 2px 0 #000);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.notch {
+  background: var(--notch, #e8e8e8);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  width: 62px;
+  height: 34px;
+  display: block;
+}
+
+/* Label Highlight */
+.label-hl {
+  background: var(--hl, var(--color-yellow));
+  color: var(--hl-ink, #000);
+  border-left: 0.035em solid #000;
+  padding: 0.04em 0.22em 0.01em;
+  display: inline-block;
+  box-shadow: 0.08em 0.08em 0 #000;
+  line-height: 1;
+}
+
+/* Idle Bob Animation */
+@keyframes idle-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+.idle-bob {
+  animation: idle-bob 4.5s ease-in-out infinite;
+}
+
+/* Marquee Infinite Ticker */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  width: max-content;
+  display: flex;
+  animation: marquee var(--dur, 32s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+/* Creative Lab Bricks Pattern */
+.bricks {
+  --b: rgba(255, 255, 255, 0.06);
+  background-image: 
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b)),
+    linear-gradient(var(--b), var(--b));
+  background-position: 
+    5% 16%, 
+    calc(5% + 108px) 16%, 
+    10% 27%, 
+    90% 6%, 
+    calc(90% - 108px) 6%, 
+    96% 15%, 
+    12% 58%, 
+    30% 93%, 
+    88% 71%;
+  background-repeat: no-repeat;
+  background-size: 96px 48px;
+}
+
+/* Wordmark styling */
+.wm-letter {
+  display: inline-block;
+  transform-origin: bottom;
+  -webkit-text-stroke: 0.012em #000;
+}
